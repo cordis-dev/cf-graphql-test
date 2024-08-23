@@ -1,44 +1,15 @@
 {
-  "root": true,
-  "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
-    "import/resolver": {
-      "typescript": {}
-    }
-  },
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "import",
-    "prettier",
-    "@typescript-eslint",
-    "sort-imports-es6-autofix"
-  ],
-  "extends": ["eslint:recommended"],
-  "ignorePatterns": ["/dist"],
   "overrides": [
     {
-      "files": ["*.ts"],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "sourceType": "module",
-        "project": ["./tsconfig.json"]
-      }
+      "files": ["*.js"],
+      "processor": "@graphql-eslint/graphql"
     },
     {
       "files": ["*.graphql"],
-      "extends": "plugin:@graphql-eslint/schema-recommended",
-      "parserOptions": {
-        "project": ["./tsconfig.json"],
-        "operations": "./**/*.graphql",
-        "schema": "./schema.graphql"
-      },
+      "parser": "@graphql-eslint/eslint-plugin",
+      "plugins": ["@graphql-eslint"],
       "rules": {
-        "@graphql-eslint/description-style": ["off"],
-        "@graphql-eslint/naming-convention": ["off"],
-        "@graphql-eslint/strict-id-in-types": ["off"],
-        "@graphql-eslint/known-type-names": ["off"]
+        "@graphql-eslint/known-type-names": "error"
       }
     }
   ]
